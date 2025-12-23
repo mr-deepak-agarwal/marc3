@@ -83,3 +83,27 @@ code {
     @apply bg-background text-foreground;
     }
 }
+
+@keyframes curveMove {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-curve-slow {
+  stroke-dasharray: 1000;
+  animation: curveMove 25s linear infinite;
+}
+
+.animate-curve-medium {
+  stroke-dasharray: 1000;
+  animation: curveMove 35s linear infinite;
+}
+
+.animate-curve-fast {
+  stroke-dasharray: 1000;
+  animation: curveMove 45s linear infinite;
+}

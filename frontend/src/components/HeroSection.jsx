@@ -1,111 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { companyInfo } from '../data/mock'
 import { Button } from './ui/button'
 
 const HeroSection = () => {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    let animationFrameId
-    let particles = []
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-
-    const createParticles = () => {
-      particles = []
-      const particleCount = Math.floor(
-        (canvas.width * canvas.height) / 15000
-      )
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
-        })
-      }
-    }
-
-    createParticles()
-
-    const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      const gradient = ctx.createLinearGradient(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      )
-      gradient.addColorStop(0, '#064e3b')
-      gradient.addColorStop(0.5, '#065f46')
-      gradient.addColorStop(1, '#047857')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x
-          const dy = particle.y - otherParticle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < 150) {
-            ctx.beginPath()
-            ctx.strokeStyle = `rgba(16, 185, 129, ${
-              0.2 * (1 - distance / 150)
-            })`
-            ctx.lineWidth = 0.5
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.stroke()
-          }
-        })
-      })
-
-      particles.forEach((particle) => {
-        ctx.beginPath()
-        ctx.arc(
-          particle.x,
-          particle.y,
-          particle.radius,
-          0,
-          Math.PI * 2
-        )
-        ctx.fillStyle = `rgba(52, 211, 153, ${particle.opacity})`
-        ctx.fill()
-
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        if (particle.x < 0 || particle.x > canvas.width)
-          particle.vx *= -1
-        if (particle.y < 0 || particle.y > canvas.height)
-          particle.vy *= -1
-      })
-
-      animationFrameId = requestAnimationFrame(drawParticles)
-    }
-
-    drawParticles()
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [])
-
   const scrollToSection = (href) => {
     const element = document.querySelector(href)
     if (element) {
@@ -114,38 +12,48 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-      />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700">
+      {/* ================= ANIMATED FINANCIAL CURVES ================= */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-20"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,600 C240,500 480,700 720,600 960,500 1200,550 1440,450"
+          fill="none"
+          stroke="rgba(255,255,255,0.25)"
+          strokeWidth="2"
+          className="animate-curve-slow"
+        />
+        <path
+          d="M0,650 C260,560 520,720 780,610 1040,500 1280,540 1440,480"
+          fill="none"
+          stroke="rgba(255,255,255,0.15)"
+          thickness="2"
+          className="animate-curve-medium"
+        />
+        <path
+          d="M0,700 C300,600 560,760 820,650 1080,540 1320,580 1440,520"
+          fill="none"
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="2"
+          className="animate-curve-fast"
+        />
+      </svg>
 
-      {/* Overlay */}
+      {/* ================= OVERLAY ================= */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
-
-      {/* Floating Shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-300/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: '1s' }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: '2s' }}
-        />
-      </div>
 
       {/* ================= CONTENT ================= */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-200 text-sm font-medium mb-8 animate-fade-in">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-200 text-sm font-medium mb-8">
+          <span className="w-2 h-2 bg-emerald-400 rounded-full" />
           {companyInfo.tagline}
         </div>
 
-        {/* Serif Hero Heading */}
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-semibold text-white mb-6 leading-tight animate-slide-up">
+        {/* Serif hero heading */}
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-medium text-white mb-6 leading-tight tracking-tight">
           Business Consulting Services
           <br />
           <span className="text-emerald-300">
@@ -153,17 +61,11 @@ const HeroSection = () => {
           </span>
         </h1>
 
-        <p
-          className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-slide-up"
-          style={{ animationDelay: '0.2s' }}
-        >
+        <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
           {companyInfo.heroSubtitle}
         </p>
 
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up"
-          style={{ animationDelay: '0.4s' }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             onClick={() => scrollToSection('#services')}
             size="lg"
@@ -184,7 +86,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* ================= SCROLL INDICATOR ================= */}
       <button
         onClick={() => scrollToSection('#about')}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"

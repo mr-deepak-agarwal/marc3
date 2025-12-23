@@ -22,68 +22,35 @@ const Footer = () => {
   }
 
   const socialIcons = [
-    {
-      icon: Facebook,
-      href: companyInfo.socialLinks.facebook,
-      label: 'Facebook',
-    },
-    {
-      icon: Twitter,
-      href: companyInfo.socialLinks.twitter,
-      label: 'Twitter',
-    },
-    {
-      icon: Instagram,
-      href: companyInfo.socialLinks.instagram,
-      label: 'Instagram',
-    },
-    {
-      icon: Linkedin,
-      href: companyInfo.socialLinks.linkedin,
-      label: 'LinkedIn',
-    },
-    {
-      icon: Youtube,
-      href: companyInfo.socialLinks.youtube,
-      label: 'YouTube',
-    },
+    { icon: Facebook, href: companyInfo.socialLinks.facebook },
+    { icon: Twitter, href: companyInfo.socialLinks.twitter },
+    { icon: Instagram, href: companyInfo.socialLinks.instagram },
+    { icon: Linkedin, href: companyInfo.socialLinks.linkedin },
+    { icon: Youtube, href: companyInfo.socialLinks.youtube },
   ]
 
   return (
-    <footer className="bg-gray-900 text-white relative">
+    <footer className="bg-gray-900 text-white">
       {/* ================= MAIN FOOTER ================= */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-4 gap-12">
-          {/* ================= COMPANY INFO ================= */}
+          {/* ================= LOGO ONLY ================= */}
           <div className="lg:col-span-2">
-            <a href="/" className="flex items-center gap-3 mb-6">
-              {/* Serif brand */}
+            <a href="/" className="inline-block mb-6">
               <div className="font-serif text-3xl font-medium tracking-tight">
                 <span className="text-emerald-400">M</span>ARC
               </div>
-
-              <div className="text-xs font-medium leading-tight text-gray-400">
-                Mangal Analytics &<br />
-                Research Consulting
-              </div>
             </a>
 
-            <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-              {companyInfo.tagline}. We offer a wide range of business
-              consulting services that we constantly look to expand,
-              helping companies grow and achieve lasting success.
-            </p>
-
-            {/* ================= SOCIAL LINKS ================= */}
-            <div className="flex items-center gap-3">
-              {socialIcons.map((social) => (
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 mt-6">
+              {socialIcons.map((social, index) => (
                 <a
-                  key={social.label}
+                  key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-emerald-600 hover:text-white transition-all duration-300"
-                  aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -110,7 +77,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* ================= CONTACT INFO ================= */}
+          {/* ================= CONTACT ================= */}
           <div>
             <h4 className="font-serif text-lg font-medium mb-6 tracking-tight">
               Contact Us
@@ -119,7 +86,7 @@ const Footer = () => {
               <li>
                 <a
                   href={`tel:${companyInfo.phone}`}
-                  className="font-serif text-base font-medium text-gray-300 hover:text-emerald-400 transition-colors tracking-tight"
+                  className="hover:text-emerald-400 transition-colors"
                 >
                   {companyInfo.phone}
                 </a>
@@ -127,14 +94,12 @@ const Footer = () => {
               <li>
                 <a
                   href={`mailto:${companyInfo.email}`}
-                  className="font-serif text-base font-medium text-gray-300 hover:text-emerald-400 transition-colors tracking-tight"
+                  className="hover:text-emerald-400 transition-colors"
                 >
                   {companyInfo.email}
                 </a>
               </li>
-              <li className="font-serif text-base font-medium text-gray-300 leading-relaxed tracking-tight">
-                {companyInfo.address}
-              </li>
+              <li className="leading-relaxed">{companyInfo.address}</li>
             </ul>
           </div>
         </div>
@@ -144,9 +109,10 @@ const Footer = () => {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Mangal Analytics and Research
-            Consulting (MARC). All Rights Reserved.
+            © {new Date().getFullYear()} Mangal Analytics and Research Consulting
+            (MARC). All Rights Reserved.
           </p>
+
           <div className="flex items-center gap-6 text-sm">
             <a
               href="#"
