@@ -14,8 +14,8 @@ const ServicesSection = () => {
             Our Services
           </div>
 
-          {/* Serif section heading */}
-          <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-gray-900 mb-6 leading-tight">
+          {/* Editorial serif heading */}
+          <h2 className="font-serif text-4xl lg:text-5xl font-medium text-gray-900 mb-6 leading-tight tracking-tight">
             Comprehensive Business Solutions
           </h2>
 
@@ -64,14 +64,14 @@ const ServicesSection = () => {
                 >
                   {/* Index */}
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="font-serif text-emerald-400 text-sm font-semibold">
+                    <span className="font-serif text-emerald-400 text-sm font-medium tracking-tight">
                       0{index + 1}
                     </span>
                     <span className="w-8 h-px bg-emerald-400" />
                   </div>
 
                   {/* Serif service title */}
-                  <h3 className="font-serif text-2xl lg:text-3xl font-semibold text-white mb-3 leading-snug">
+                  <h3 className="font-serif text-2xl lg:text-3xl font-medium text-white mb-3 leading-snug tracking-tight">
                     {service.title}
                   </h3>
 

@@ -27,8 +27,8 @@ const AboutSection = () => {
               key={index}
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center group hover:shadow-lg hover:border-emerald-200 transition-all duration-500 hover:-translate-y-1"
             >
-              {/* Serif for premium numeric impact */}
-              <div className="font-serif text-4xl lg:text-5xl font-semibold text-emerald-600 mb-2 group-hover:scale-110 transition-transform duration-300">
+              {/* Premium numeric tone */}
+              <div className="font-serif text-4xl lg:text-5xl font-medium text-emerald-600 mb-2 group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
 
@@ -59,7 +59,7 @@ const AboutSection = () => {
                   <Target className="w-7 h-7 text-emerald-600" />
                 </div>
                 <div>
-                  <div className="font-serif text-lg font-semibold text-gray-800">
+                  <div className="font-serif text-base font-medium text-gray-800 tracking-tight">
                     Our Mission
                   </div>
                   <div className="text-sm text-gray-600">
@@ -80,8 +80,8 @@ const AboutSection = () => {
               {aboutSection.subtitle}
             </div>
 
-            {/* Serif Heading */}
-            <h2 className="font-serif text-4xl lg:text-5xl font-semibold text-gray-900 mb-6 leading-tight">
+            {/* Editorial serif heading */}
+            <h2 className="font-serif text-4xl lg:text-5xl font-medium text-gray-900 mb-6 leading-tight tracking-tight">
               {aboutSection.title}
             </h2>
 
@@ -89,8 +89,8 @@ const AboutSection = () => {
               {aboutSection.description}
             </p>
 
-            {/* Serif emphasis line */}
-            <p className="font-serif text-emerald-700 font-medium mb-8 text-lg">
+            {/* Strategic emphasis line */}
+            <p className="font-serif text-emerald-700 font-normal mb-8 text-lg tracking-tight">
               {aboutSection.commitment}
             </p>
 

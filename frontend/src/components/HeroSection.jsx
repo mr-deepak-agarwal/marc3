@@ -1,30 +1,31 @@
-import React, { useEffect, useRef } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
-import { companyInfo } from '../data/mock';
-import { Button } from './ui/button';
+import React, { useEffect, useRef } from 'react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
+import { companyInfo } from '../data/mock'
+import { Button } from './ui/button'
 
 const HeroSection = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    let particles = [];
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    let animationFrameId
+    let particles = []
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
-    // Create particles
     const createParticles = () => {
-      particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
-      
+      particles = []
+      const particleCount = Math.floor(
+        (canvas.width * canvas.height) / 15000
+      )
+
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -32,112 +33,137 @@ const HeroSection = () => {
           radius: Math.random() * 2 + 1,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2
-        });
+          opacity: Math.random() * 0.5 + 0.2,
+        })
       }
-    };
+    }
 
-    createParticles();
+    createParticles()
 
     const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw gradient background
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#064e3b'); // emerald-900
-      gradient.addColorStop(0.5, '#065f46'); // emerald-800
-      gradient.addColorStop(1, '#047857'); // emerald-700
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const gradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      )
+      gradient.addColorStop(0, '#064e3b')
+      gradient.addColorStop(0.5, '#065f46')
+      gradient.addColorStop(1, '#047857')
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      // Draw connecting lines
       particles.forEach((particle, i) => {
         particles.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const dx = particle.x - otherParticle.x
+          const dy = particle.y - otherParticle.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
 
           if (distance < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(16, 185, 129, ${0.2 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
+            ctx.beginPath()
+            ctx.strokeStyle = `rgba(16, 185, 129, ${
+              0.2 * (1 - distance / 150)
+            })`
+            ctx.lineWidth = 0.5
+            ctx.moveTo(particle.x, particle.y)
+            ctx.lineTo(otherParticle.x, otherParticle.y)
+            ctx.stroke()
           }
-        });
-      });
+        })
+      })
 
-      // Draw particles
       particles.forEach((particle) => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(52, 211, 153, ${particle.opacity})`;
-        ctx.fill();
+        ctx.beginPath()
+        ctx.arc(
+          particle.x,
+          particle.y,
+          particle.radius,
+          0,
+          Math.PI * 2
+        )
+        ctx.fillStyle = `rgba(52, 211, 153, ${particle.opacity})`
+        ctx.fill()
 
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+        particle.x += particle.vx
+        particle.y += particle.vy
 
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-      });
+        if (particle.x < 0 || particle.x > canvas.width)
+          particle.vx *= -1
+        if (particle.y < 0 || particle.y > canvas.height)
+          particle.vy *= -1
+      })
 
-      animationFrameId = requestAnimationFrame(drawParticles);
-    };
+      animationFrameId = requestAnimationFrame(drawParticles)
+    }
 
-    drawParticles();
+    drawParticles()
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+      window.removeEventListener('resize', resizeCanvas)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
 
   const scrollToSection = (href) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-  };
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Canvas Background */}
+      {/* Canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
       />
 
-      {/* Overlay for better text readability */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
-      {/* Floating shapes */}
+      {/* Floating Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-300/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-300/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
 
-      {/* Content */}
+      {/* ================= CONTENT ================= */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-200 text-sm font-medium mb-8 animate-fade-in">
           <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
           {companyInfo.tagline}
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
+        {/* Serif Hero Heading */}
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-semibold text-white mb-6 leading-tight animate-slide-up">
           Business Consulting Services
           <br />
-          <span className="text-emerald-300">That Power Smarter Growth</span>
+          <span className="text-emerald-300">
+            That Power Smarter Growth
+          </span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <p
+          className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-slide-up"
+          style={{ animationDelay: '0.2s' }}
+        >
           {companyInfo.heroSubtitle}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+        <div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up"
+          style={{ animationDelay: '0.4s' }}
+        >
           <Button
             onClick={() => scrollToSection('#services')}
             size="lg"
@@ -146,6 +172,7 @@ const HeroSection = () => {
             Explore Our Services
             <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Button>
+
           <Button
             onClick={() => scrollToSection('#about')}
             variant="outline"
@@ -165,7 +192,7 @@ const HeroSection = () => {
         <ChevronDown size={32} />
       </button>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

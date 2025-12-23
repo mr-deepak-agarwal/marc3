@@ -95,9 +95,6 @@ const Header = () => {
               />
               {/* OPTIONAL text brand (premium look) */}
               {/* Remove this span if you want logo-only */}
-              <span className="hidden sm:block font-serif text-xl font-semibold text-gray-900 tracking-tight">
-                MarcGlocal
-              </span>
             </a>
 
             {/* ================= DESKTOP NAV ================= */}
