@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, X, Phone, Mail, Linkedin, Twitter } from 'lucide-react'
+import {
+  Menu,
+  X,
+  Phone,
+  Mail,
+  Linkedin,
+  Twitter,
+} from 'lucide-react'
 import { companyInfo, navLinks } from '../data/mock'
 import { Button } from './ui/button'
 
@@ -25,7 +32,7 @@ const Header = () => {
 
   return (
     <>
-      {/* ================= TOP BAR ================= */}
+      {/* ================= TOP INFO BAR ================= */}
       <div className="hidden lg:block bg-emerald-900 text-white">
         <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
@@ -46,7 +53,6 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Social Icons */}
           <div className="flex items-center gap-4">
             <a
               href={companyInfo.socialLinks.linkedin}
@@ -80,13 +86,18 @@ const Header = () => {
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <a href="/" className="flex items-center">
+            {/* ================= LOGO / BRAND ================= */}
+            <a href="/" className="flex items-center gap-2">
               <img
                 src="/marc_logo.png"
                 alt="MarcGlocal Logo"
                 className="h-11 w-auto"
               />
+              {/* OPTIONAL text brand (premium look) */}
+              {/* Remove this span if you want logo-only */}
+              <span className="hidden sm:block font-serif text-xl font-semibold text-gray-900 tracking-tight">
+                MarcGlocal
+              </span>
             </a>
 
             {/* ================= DESKTOP NAV ================= */}
@@ -95,7 +106,7 @@ const Header = () => {
                 <button
                   key={link.label}
                   onClick={() => scrollToSection(link.href)}
-                  className="px-4 py-2 text-sm font-medium rounded-lg text-gray-800 hover:text-emerald-600 hover:bg-emerald-500/10 transition-all"
+                  className="px-4 py-2 text-sm font-medium text-gray-800 rounded-lg hover:text-emerald-600 hover:bg-emerald-500/10 transition-all"
                 >
                   {link.label}
                 </button>
@@ -109,7 +120,7 @@ const Header = () => {
               </Button>
             </nav>
 
-            {/* ================= MOBILE BUTTON ================= */}
+            {/* ================= MOBILE TOGGLE ================= */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg text-gray-800 hover:bg-gray-100 transition"
@@ -123,7 +134,9 @@ const Header = () => {
         {/* ================= MOBILE MENU ================= */}
         <div
           className={`lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl transition-all duration-300 overflow-hidden ${
-            isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+            isMobileMenuOpen
+              ? 'max-h-screen opacity-100'
+              : 'max-h-0 opacity-0'
           }`}
         >
           <div className="px-6 py-4 space-y-2">
