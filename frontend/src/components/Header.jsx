@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  Menu,
-  X,
-  Phone,
-  Mail,
-  Linkedin,
-  Twitter,
-} from 'lucide-react'
+import { Menu, X, Phone, Mail, Linkedin, Twitter } from 'lucide-react'
 import { companyInfo, navLinks } from '../data/mock'
 import { Button } from './ui/button'
 
@@ -16,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40)
+      setIsScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -33,8 +26,8 @@ const Header = () => {
   return (
     <>
       {/* ================= TOP INFO BAR ================= */}
-      <div className="hidden lg:block bg-emerald-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center text-sm">
+      <div className="hidden lg:block bg-emerald-900 text-white py-2">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a
               href={`tel:${companyInfo.phone}`}
@@ -43,7 +36,6 @@ const Header = () => {
               <Phone size={14} />
               {companyInfo.phone}
             </a>
-
             <a
               href={`mailto:${companyInfo.email}`}
               className="flex items-center gap-2 hover:text-emerald-300 transition-colors"
@@ -78,23 +70,21 @@ const Header = () => {
 
       {/* ================= MAIN HEADER ================= */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-500 ${
+        className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg'
-            : 'bg-transparent'
+            ? 'bg-white/95 backdrop-blur-md shadow-md'
+            : 'bg-white'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* ================= LOGO / BRAND ================= */}
-            <a href="/" className="flex items-center gap-2">
+            {/* ================= LOGO ================= */}
+            <a href="/" className="flex items-center">
               <img
                 src="/marc_logo.png"
-                alt="MarcGlocal Logo"
-                className="h-11 w-auto"
+                alt="MARC Logo"
+                className="h-10 w-auto object-contain"
               />
-              {/* OPTIONAL text brand (premium look) */}
-              {/* Remove this span if you want logo-only */}
             </a>
 
             {/* ================= DESKTOP NAV ================= */}
@@ -103,7 +93,7 @@ const Header = () => {
                 <button
                   key={link.label}
                   onClick={() => scrollToSection(link.href)}
-                  className="px-4 py-2 text-sm font-medium text-gray-800 rounded-lg hover:text-emerald-600 hover:bg-emerald-500/10 transition-all"
+                  className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
                 >
                   {link.label}
                 </button>
@@ -111,17 +101,17 @@ const Header = () => {
 
               <Button
                 onClick={() => scrollToSection('#contact')}
-                className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6 shadow-lg shadow-emerald-500/25 transition-all hover:shadow-emerald-500/40 hover:-translate-y-0.5"
+                className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6 font-medium tracking-tight shadow-sm"
               >
                 Get in Touch
               </Button>
             </nav>
 
-            {/* ================= MOBILE TOGGLE ================= */}
+            {/* ================= MOBILE MENU BUTTON ================= */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-800 hover:bg-gray-100 transition"
-              aria-label="Toggle Menu"
+              className="lg:hidden p-2 rounded-lg text-gray-800"
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -130,10 +120,8 @@ const Header = () => {
 
         {/* ================= MOBILE MENU ================= */}
         <div
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl transition-all duration-300 overflow-hidden ${
-            isMobileMenuOpen
-              ? 'max-h-screen opacity-100'
-              : 'max-h-0 opacity-0'
+          className={`lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 overflow-hidden ${
+            isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="px-6 py-4 space-y-2">
@@ -141,7 +129,7 @@ const Header = () => {
               <button
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left px-4 py-3 text-gray-800 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition font-medium"
+                className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
               >
                 {link.label}
               </button>
@@ -149,7 +137,7 @@ const Header = () => {
 
             <Button
               onClick={() => scrollToSection('#contact')}
-              className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium tracking-tight"
             >
               Get in Touch
             </Button>
