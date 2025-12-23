@@ -5,48 +5,48 @@ import { Button } from './ui/button'
 
 const HeroSection = () => {
   const scrollToSection = (href) => {
-    const element = document.querySelector(href)
-    if (element) element.scrollIntoView({ behavior: 'smooth' })
+    const el = document.querySelector(href)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
 
-      {/* ===== ANIMATED FINANCIAL CURVES (VISIBLE VERSION) ===== */}
+      {/* ===== FULL PAGE FINANCIAL FLOW SVG ===== */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-40"
+        className="absolute inset-0 w-full h-full opacity-45"
         viewBox="0 0 1440 900"
         preserveAspectRatio="none"
       >
-        <path
-          d="M0,600 C240,500 480,700 720,600 960,500 1200,550 1440,450"
-          fill="none"
-          stroke="rgba(255,255,255,0.35)"
-          strokeWidth="2"
-          className="animate-curve-slow"
-        />
-        <path
-          d="M0,650 C260,560 520,720 780,610 1040,500 1280,540 1440,480"
-          fill="none"
-          stroke="rgba(255,255,255,0.25)"
-          strokeWidth="2"
-          className="animate-curve-medium"
-        />
-        <path
-          d="M0,700 C300,600 560,760 820,650 1080,540 1320,580 1440,520"
-          fill="none"
-          stroke="rgba(255,255,255,0.18)"
-          strokeWidth="2"
-          className="animate-curve-fast"
-        />
+        {[
+          { y: 200, cls: 'animate-flow-slow', o: 0.35 },
+          { y: 300, cls: 'animate-flow-medium', o: 0.28 },
+          { y: 420, cls: 'animate-flow-fast', o: 0.22 },
+          { y: 540, cls: 'animate-flow-slow', o: 0.30 },
+          { y: 660, cls: 'animate-flow-medium', o: 0.24 },
+        ].map((line, i) => (
+          <path
+            key={i}
+            d={`M-200 ${line.y}
+               C 200 ${line.y - 80},
+                 500 ${line.y + 100},
+                 800 ${line.y - 60},
+                 1100 ${line.y + 80},
+                 1600 ${line.y - 40}`}
+            fill="none"
+            stroke={`rgba(255,255,255,${line.o})`}
+            strokeWidth="2"
+            className={line.cls}
+          />
+        ))}
       </svg>
 
-      {/* ===== SOFTER OVERLAY (IMPORTANT CHANGE) ===== */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+      {/* ===== DEPTH OVERLAY ===== */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
       {/* ===== CONTENT ===== */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-200 text-sm font-medium mb-8">
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-200 text-sm font-medium mb-8">
           <span className="w-2 h-2 bg-emerald-400 rounded-full" />
           {companyInfo.tagline}
         </div>
@@ -67,17 +67,17 @@ const HeroSection = () => {
           <Button
             onClick={() => scrollToSection('#services')}
             size="lg"
-            className="bg-white text-emerald-800 hover:bg-emerald-50 px-8 py-6 text-lg font-semibold shadow-2xl shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-emerald-900/30 group"
+            className="bg-white text-emerald-900 hover:bg-emerald-50 px-8 py-6 text-lg font-semibold shadow-2xl shadow-black/25 transition-all duration-300 hover:-translate-y-1"
           >
             Explore Our Services
-            <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
           <Button
             onClick={() => scrollToSection('#about')}
             variant="outline"
             size="lg"
-            className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+            className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
           >
             Learn About Us
           </Button>
@@ -87,7 +87,7 @@ const HeroSection = () => {
       {/* ===== SCROLL INDICATOR ===== */}
       <button
         onClick={() => scrollToSection('#about')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white animate-bounce"
       >
         <ChevronDown size={32} />
       </button>

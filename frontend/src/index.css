@@ -107,3 +107,27 @@ code {
   stroke-dasharray: 1000;
   animation: curveMove 45s linear infinite;
 }
+
+/* ===== FINANCIAL FLOW ANIMATIONS ===== */
+
+@keyframes flowLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-8%); }
+}
+
+@keyframes flowRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(6%); }
+}
+
+.animate-flow-slow {
+  animation: flowLeft 40s ease-in-out infinite alternate;
+}
+
+.animate-flow-medium {
+  animation: flowRight 28s ease-in-out infinite alternate;
+}
+
+.animate-flow-fast {
+  animation: flowLeft 20s ease-in-out infinite alternate;
+}
