@@ -357,3 +357,80 @@ code {
 .font-serif {
   font-family: 'Playfair Display', Georgia, serif;
 }
+
+/* ================= CLIENTS MARQUEE ================= */
+
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== CLIENT TILE ===== */
+
+.client-tile {
+  width: 220px;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid rgb(229 231 235); /* gray-200 */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.client-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  border-color: rgb(16 185 129); /* emerald-500 */
+}
+
+.client-logo-wrapper {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.client-logo {
+  max-height: 60px;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.client-tile:hover .client-logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.client-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827; /* gray-900 */
+}

@@ -9,6 +9,7 @@ import InsightsSection from '../components/InsightsSection';
 import WhyUsSection from '../components/WhyUsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import ClientsSection from '../components/ClientsSection'
 
 const LandingPage = () => {
   return (
@@ -21,6 +22,7 @@ const LandingPage = () => {
         <IndustriesSection />
         <WhyUsSection />
         <TestimonialsSection />
+        <ClientsSection />
         <InsightsSection />
         <ContactSection />
       </main>
