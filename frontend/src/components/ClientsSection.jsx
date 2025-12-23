@@ -10,11 +10,15 @@ import React from 'react'
  */
 
 const clients = [
-  { name: 'Kineco', logo: '/clients/kineco.png' },
-  { name: 'Magsons', logo: '/clients/magsons.png' },
-  { name: 'Taj', logo: '/clients/taj.png' },
-  { name: 'Isha Yoga', logo: '/clients/isha.png' },
-  { name: 'Client Name', logo: '/clients/client5.png' },
+ { name: 'Maduas', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/06/maduas.png' },
+  { name: 'E P Kamat', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/Kamat.png' },
+  { name: 'The Park Hotels', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/07/The-park-hotels.png' },
+  { name: 'Kineco', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/04/logo5.png' },
+  { name: 'Magsons', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6.png' },
+  { name: 'Taj', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/08/Taj-1.png' },
+  { name: 'Isha Yoga', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-223.png' },
+  { name: 'Danlow', logo: 'https://www.marcglocal.com/wp-content/uploads/2022/05/logo6-6-32.png' },
+
 ]
 
 const ClientsSection = () => {
