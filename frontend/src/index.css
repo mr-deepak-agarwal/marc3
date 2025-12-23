@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,6 +45,12 @@ code {
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
+        
+        /* Finance-themed colors */
+        --emerald-dark: 160 84% 18%;
+        --emerald-mid: 160 84% 28%;
+        --emerald-light: 160 72% 42%;
+        --emerald-glow: 160 65% 55%;
     }
   .dark {
         --background: 0 0% 3.9%;
@@ -84,50 +89,271 @@ code {
     }
 }
 
-@keyframes curveMove {
+/* ===== FINANCIAL GRAPH ANIMATIONS ===== */
+
+/* Line chart drawing animation */
+@keyframes drawLine {
   0% {
-    stroke-dashoffset: 1000;
+    stroke-dashoffset: 2000;
   }
   100% {
     stroke-dashoffset: 0;
   }
 }
 
-.animate-curve-slow {
-  stroke-dasharray: 1000;
-  animation: curveMove 25s linear infinite;
+/* Bar chart growing animation */
+@keyframes growBar {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
-.animate-curve-medium {
-  stroke-dasharray: 1000;
-  animation: curveMove 35s linear infinite;
+/* Bar chart continuous pulse */
+@keyframes barPulse {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1.08);
+    opacity: 0.5;
+  }
 }
 
-.animate-curve-fast {
-  stroke-dasharray: 1000;
-  animation: curveMove 45s linear infinite;
+/* Bar chart wave effect */
+@keyframes barWave {
+  0%, 100% {
+    transform: scaleY(0.82);
+  }
+  50% {
+    transform: scaleY(1);
+  }
 }
 
-/* ===== FINANCIAL FLOW ANIMATIONS ===== */
-
-@keyframes flowLeft {
-  from { transform: translateX(0); }
-  to { transform: translateX(-8%); }
+/* Candle stick pulse */
+@keyframes candlePulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
-@keyframes flowRight {
-  from { transform: translateX(0); }
-  to { transform: translateX(6%); }
+/* Floating data points */
+@keyframes floatPoint {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.7;
+  }
 }
 
-.animate-flow-slow {
-  animation: flowLeft 40s ease-in-out infinite alternate;
+/* Subtle grid line fade */
+@keyframes gridFade {
+  0%, 100% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.15;
+  }
 }
 
-.animate-flow-medium {
-  animation: flowRight 28s ease-in-out infinite alternate;
+/* Upward trend line */
+@keyframes trendMove {
+  0% {
+    stroke-dashoffset: 800;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
 }
 
-.animate-flow-fast {
-  animation: flowLeft 20s ease-in-out infinite alternate;
+/* Area chart fill animation */
+@keyframes areaReveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Pie chart segment rotation */
+@keyframes pieReveal {
+  0% {
+    transform: rotate(-90deg) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pie chart continuous rotation */
+@keyframes pieRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pie segment pulse */
+@keyframes piePulse {
+  0%, 100% {
+    opacity: 0.2;
+    stroke-width: 16;
+  }
+  50% {
+    opacity: 0.5;
+    stroke-width: 24;
+  }
+}
+
+/* Donut chart grow */
+@keyframes donutGrow {
+  0%, 100% {
+    r: 38;
+  }
+  50% {
+    r: 42;
+  }
+}
+
+/* Number ticker effect */
+@keyframes ticker {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation classes */
+.animate-draw-line {
+  stroke-dasharray: 2000;
+  animation: drawLine 4s ease-out infinite;
+}
+
+.animate-draw-line-slow {
+  stroke-dasharray: 2000;
+  animation: drawLine 6s ease-out infinite;
+}
+
+.animate-draw-line-fast {
+  stroke-dasharray: 2000;
+  animation: drawLine 3s ease-out infinite;
+}
+
+.animate-grow-bar {
+  transform-origin: bottom;
+  animation: growBar 1.5s ease-out forwards;
+}
+
+.animate-bar-pulse {
+  transform-origin: bottom;
+  animation: barPulse 1.5s ease-in-out infinite;
+}
+
+.animate-bar-wave {
+  transform-origin: bottom;
+  animation: barWave 1s ease-in-out infinite;
+}
+
+.animate-candle-pulse {
+  animation: candlePulse 2s ease-in-out infinite;
+}
+
+.animate-float-point {
+  animation: floatPoint 1.5s ease-in-out infinite;
+}
+
+.animate-grid-fade {
+  animation: gridFade 3s ease-in-out infinite;
+}
+
+.animate-trend-move {
+  stroke-dasharray: 800;
+  animation: trendMove 5s ease-in-out infinite;
+}
+
+.animate-area-reveal {
+  animation: areaReveal 1s ease-out forwards;
+}
+
+.animate-pie-reveal {
+  transform-origin: center;
+  animation: pieReveal 1.5s ease-out forwards;
+}
+
+.animate-pie-rotate {
+  transform-origin: center;
+  animation: pieRotate 12s linear infinite;
+}
+
+.animate-pie-pulse {
+  animation: piePulse 1.8s ease-in-out infinite;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-1000 { animation-delay: 1s; }
+.delay-1500 { animation-delay: 1.5s; }
+.delay-2000 { animation-delay: 2s; }
+.delay-2500 { animation-delay: 2.5s; }
+.delay-3000 { animation-delay: 3s; }
+
+/* Scroll indicator bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    transform: translateY(8px) translateX(-50%);
+  }
+}
+
+.animate-bounce-scroll {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Serif font class */
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
