@@ -54,11 +54,11 @@ const keyTeam = [
 ]
 
 const timeline = [
-  { year: '2010', title: 'Founded', desc: 'Started as Mangal Advisory Services', color: 'from-emerald-500 to-teal-600' },
-  { year: '2014', title: 'Global', desc: 'Partnership with Mundi Consulting', color: 'from-blue-500 to-indigo-600' },
-  { year: '2015', title: 'MARC', desc: 'Rebranded with expanded services', color: 'from-purple-500 to-pink-600' },
-  { year: '2020', title: 'Pan-India', desc: '8+ cities across India', color: 'from-orange-500 to-red-600' },
-  { year: '2024', title: 'USA', desc: 'MARC Glocal Inc, Delaware', color: 'from-cyan-500 to-blue-600' },
+  { year: '2010', title: 'Founded', desc: 'Started as Mangal Advisory Services', gradient: 'linear-gradient(135deg, #10b981 0%, #0d9488 100%)' },
+  { year: '2014', title: 'Global', desc: 'Partnership with Mundi Consulting', gradient: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)' },
+  { year: '2015', title: 'MARC', desc: 'Rebranded with expanded services', gradient: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' },
+  { year: '2020', title: 'Pan-India', desc: '8+ cities across India', gradient: 'linear-gradient(135deg, #f97316 0%, #ef4444 100%)' },
+  { year: '2024', title: 'USA', desc: 'MARC Glocal Inc, Delaware', gradient: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)' },
 ]
 
 const clients = [
