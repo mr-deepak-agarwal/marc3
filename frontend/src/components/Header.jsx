@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, Mail, Linkedin, Twitter } from 'lucide-react'
-import { companyInfo, navLinks } from '../data/mock'
+import { companyInfo } from '../data/mock'
 import { Button } from './ui/button'
+
+// Updated nav links - About is now a page, rest are scroll sections
+const navLinks = [
+  { label: 'About', href: '/about', isPage: true },
+  { label: 'Services', href: '#services' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'Insights', href: '#insights' },
+  { label: 'Contact', href: '#contact' },
+]
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +27,34 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+  const handleNavClick = (link) => {
     setIsMobileMenuOpen(false)
+    
+    if (link.isPage) {
+      navigate(link.href)
+    } else {
+      // If we're not on homepage, go to homepage first then scroll
+      if (location.pathname !== '/') {
+        navigate('/' + link.href)
+      } else {
+        const element = document.querySelector(link.href)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }
+
+  const handleContactClick = () => {
+    setIsMobileMenuOpen(false)
+    if (location.pathname !== '/') {
+      navigate('/#contact')
+    } else {
+      const element = document.querySelector('#contact')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
   }
 
   return (
