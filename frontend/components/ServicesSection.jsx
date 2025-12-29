@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { services } from '../data/mock'

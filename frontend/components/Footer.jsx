@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { companyInfo, navLinks } from '../data/mock'
 import {
