@@ -315,11 +315,10 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                   }`}
                 >
                   <div className="relative aspect-[3/4]">
-                    <Image
+                    <img
                       src={director.image}
                       alt={director.name}
-                      fill
-                      className="object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/30 to-transparent" />
                     
