@@ -17,7 +17,7 @@ const companyInfo = {
 }
 
 const navLinks = [
-  { label: 'About Us', href: '#about' },
+  { label: 'About', href: '/about', isPage: true },
   { label: 'Services', href: '#services' },
   { label: 'Industries', href: '#industries' },
   { label: 'Insights', href: '#insights' },
