@@ -189,7 +189,8 @@ const JourneySection = () => {
           {timeline.map((item, i) => (
             <div 
               key={i} 
-              className={`flex-shrink-0 w-64 lg:w-auto bg-gradient-to-br ${item.color} rounded-2xl p-6 transform hover:scale-105 transition-all duration-500 cursor-pointer relative overflow-hidden group`}
+              className="flex-shrink-0 w-64 lg:w-auto rounded-2xl p-6 transform hover:scale-105 transition-all duration-500 cursor-pointer relative overflow-hidden group"
+              style={{ background: item.gradient }}
             >
               {/* Glow effect */}
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
