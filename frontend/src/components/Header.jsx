@@ -170,17 +170,28 @@ const Header = () => {
         >
           <div className="px-6 py-4 space-y-2">
             {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
-              >
-                {link.label}
-              </button>
+              link.isPage ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link)}
+                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
 
             <Button
-              onClick={() => scrollToSection('#contact')}
+              onClick={handleContactClick}
               className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium tracking-tight"
             >
               Get in Touch
