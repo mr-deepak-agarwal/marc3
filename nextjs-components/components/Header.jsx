@@ -111,13 +111,23 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.href)}
-                  className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
-                >
-                  {link.label}
-                </button>
+                link.isPage ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollToSection(link.href)}
+                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
+                  >
+                    {link.label}
+                  </button>
+                )
               ))}
               <Button
                 onClick={() => scrollToSection('#contact')}
