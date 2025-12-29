@@ -308,7 +308,7 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
                 <div
                   key={i}
                   onClick={() => setSelectedMember(selectedMember === i ? null : i)}
-                  className={`cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 ${
+                  className={`relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 ${
                     selectedMember === i 
                       ? 'ring-4 ring-emerald-500 scale-105' 
                       : 'hover:scale-105 hover:ring-2 hover:ring-emerald-500/50'
