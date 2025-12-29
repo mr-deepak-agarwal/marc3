@@ -156,13 +156,24 @@ export default function Header() {
         >
           <div className="px-6 py-4 space-y-2">
             {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
-              >
-                {link.label}
-              </button>
+              link.isPage ? (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.label}
+                  onClick={() => scrollToSection(link.href)}
+                  className="block w-full text-left px-4 py-3 text-gray-800 font-medium tracking-tight hover:bg-emerald-50 hover:text-emerald-600 rounded-lg transition-colors"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
             <Button
               onClick={() => scrollToSection('#contact')}
