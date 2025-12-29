@@ -113,28 +113,38 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* ================= LOGO ================= */}
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img
                 src="/marc_logo.png"
                 alt="MARC Logo"
                 className="h-10 w-auto object-contain"
               />
-            </a>
+            </Link>
 
             {/* ================= DESKTOP NAV ================= */}
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.href)}
-                  className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
-                >
-                  {link.label}
-                </button>
+                link.isPage ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    onClick={() => handleNavClick(link)}
+                    className="px-4 py-2 text-sm font-medium tracking-tight text-gray-800 rounded-lg transition-colors hover:text-emerald-600 hover:bg-emerald-50"
+                  >
+                    {link.label}
+                  </button>
+                )
               ))}
 
               <Button
-                onClick={() => scrollToSection('#contact')}
+                onClick={handleContactClick}
                 className="ml-4 bg-emerald-600 hover:bg-emerald-700 text-white px-6 font-medium tracking-tight shadow-sm"
               >
                 Get in Touch
