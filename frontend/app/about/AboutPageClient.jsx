@@ -170,47 +170,42 @@ const HeroBentoSection = () => {
 // ===========================================
 const JourneySection = () => {
   return (
-    <section className="snap-section min-h-screen bg-gray-950 flex items-center justify-center relative overflow-hidden">
+    <section className="snap-section min-h-screen bg-gray-950 flex items-center justify-center relative overflow-hidden py-20">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
       </div>
       
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
-        <div className="text-center mb-16 animate-slide-up">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
           <span className="text-emerald-400 text-sm tracking-[0.3em] uppercase">Our Journey</span>
-          <h2 className="font-serif text-5xl lg:text-7xl font-medium text-white mt-4">
+          <h2 className="font-serif text-4xl lg:text-6xl font-medium text-white mt-4">
             14 Years of <span className="text-emerald-400">Excellence</span>
           </h2>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
-          
-          <div className="grid grid-cols-5 gap-4">
-            {timeline.map((item, i) => (
-              <div 
-                key={i} 
-                className="relative group"
-                style={{ animationDelay: `${i * 200}ms` }}
-              >
-                {/* Dot */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-emerald-500 rounded-full z-10 group-hover:scale-150 transition-transform">
-                  <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-50" />
-                </div>
-                
-                {/* Card */}
-                <div className={`${i % 2 === 0 ? 'mb-20' : 'mt-20'} bg-gradient-to-br ${item.color} rounded-2xl p-6 transform group-hover:scale-105 transition-all duration-500 cursor-pointer`}>
-                  <span className="text-5xl font-serif font-bold text-white/30">{item.year}</span>
-                  <h3 className="text-xl font-serif text-white mt-2">{item.title}</h3>
-                  <p className="text-white/70 text-sm mt-1">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Timeline - Horizontal scroll on mobile, grid on desktop */}
+        <div className="flex gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:overflow-visible scrollbar-hide">
+          {timeline.map((item, i) => (
+            <div 
+              key={i} 
+              className={`flex-shrink-0 w-64 lg:w-auto bg-gradient-to-br ${item.color} rounded-2xl p-6 transform hover:scale-105 transition-all duration-500 cursor-pointer relative overflow-hidden group`}
+            >
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <span className="text-5xl font-serif font-bold text-white/30">{item.year}</span>
+              <h3 className="text-xl font-serif text-white mt-2 relative z-10">{item.title}</h3>
+              <p className="text-white/70 text-sm mt-1 relative z-10">{item.desc}</p>
+              
+              {/* Dot indicator */}
+              <div className="absolute bottom-4 right-4 w-3 h-3 bg-white/50 rounded-full" />
+            </div>
+          ))}
         </div>
+
+        {/* Connection line on desktop */}
+        <div className="hidden lg:block relative h-1 bg-gradient-to-r from-emerald-500 via-purple-500 to-cyan-500 rounded-full mt-8 mx-8" />
       </div>
     </section>
   )
