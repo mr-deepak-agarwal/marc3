@@ -86,85 +86,79 @@ const locations = [
 // ===========================================
 const HeroBentoSection = () => {
   return (
-    <section className="snap-section min-h-screen bg-mesh flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
+    <section className="snap-section min-h-screen bg-mesh flex items-center justify-center p-4 lg:p-8 relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[120px] animate-pulse-glow" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-teal-500/15 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
       
       <div className="max-w-7xl w-full mx-auto relative z-10">
-        {/* Bento Grid */}
-        <div className="grid grid-cols-12 grid-rows-6 gap-4 h-[85vh]">
+        {/* Bento Grid - Simplified */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[180px]">
           
-          {/* Main Hero Card */}
-          <div className="col-span-12 lg:col-span-7 row-span-4 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 rounded-[2rem] p-8 lg:p-12 flex flex-col justify-between relative overflow-hidden group">
+          {/* Main Hero Card - Spans 2 cols and 2 rows */}
+          <div className="col-span-2 row-span-2 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg')] bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent" />
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-emerald-200 text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-emerald-200 text-sm font-medium mb-4">
                 <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                 About MARC
               </div>
-              <h1 className="font-serif text-4xl lg:text-6xl font-medium text-white leading-tight tracking-tight">
+              <h1 className="font-serif text-3xl lg:text-5xl font-medium text-white leading-tight tracking-tight">
                 We Shape
                 <br />
-                <span className="text-emerald-300 glow-text">Decisions</span>
+                <span className="text-emerald-300">Decisions</span>
                 <br />
                 For the Better
               </h1>
             </div>
             
-            <p className="text-emerald-100/80 text-lg max-w-lg relative z-10">
+            <p className="text-emerald-100/80 text-base relative z-10 hidden lg:block">
               Global strategy consultancy working with business leaders to seize competitive advantage.
             </p>
-
-            {/* Floating badge */}
-            <div className="absolute bottom-8 right-8 w-24 h-24 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <ArrowDown className="w-8 h-8 text-white animate-bounce" />
-            </div>
           </div>
 
-          {/* Stats Cards */}
+          {/* Stats Cards - 4 cards in a 2x2 grid on the right */}
           {stats.map((stat, i) => (
             <div 
               key={i} 
-              className={`col-span-6 lg:col-span-2 row-span-2 ${
-                i < 2 ? 'lg:col-start-8' : ''
-              } glass rounded-[1.5rem] p-6 flex flex-col justify-center items-center border border-white/10 hover:border-emerald-500/50 transition-all duration-500 group hover:scale-105 cursor-pointer`}
-              style={{ animationDelay: `${i * 100}ms` }}
+              className="col-span-1 row-span-1 bg-gray-900/80 backdrop-blur-xl rounded-2xl p-4 flex flex-col justify-center items-center border border-white/10 hover:border-emerald-500/50 transition-all duration-500 group hover:scale-105 cursor-pointer"
             >
-              <stat.icon className="w-8 h-8 text-emerald-400 mb-3 group-hover:scale-110 transition-transform" />
-              <span className="text-4xl lg:text-5xl font-serif font-medium text-white">{stat.value}</span>
-              <span className="text-gray-400 text-sm mt-1">{stat.label}</span>
+              <stat.icon className="w-6 h-6 text-emerald-400 mb-2 group-hover:scale-110 transition-transform" />
+              <span className="text-3xl lg:text-4xl font-serif font-medium text-white">{stat.value}</span>
+              <span className="text-gray-400 text-xs mt-1">{stat.label}</span>
             </div>
           ))}
 
           {/* Vision Card */}
-          <div className="col-span-6 lg:col-span-4 row-span-2 bg-gradient-to-br from-gray-900 to-gray-800 rounded-[1.5rem] p-6 border border-gray-700/50 hover:border-emerald-500/30 transition-all duration-500 group cursor-pointer overflow-hidden relative">
+          <div className="col-span-1 lg:col-span-2 row-span-1 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-5 border border-gray-700/50 hover:border-emerald-500/30 transition-all duration-500 group cursor-pointer overflow-hidden relative flex items-center gap-4">
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-            <Eye className="w-10 h-10 text-emerald-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-serif text-white mb-2">Our Vision</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">Creating an ecosystem of financial awareness and sound business management for an improved economy.</p>
-          </div>
-
-          {/* Mission Card */}
-          <div className="col-span-6 lg:col-span-4 row-span-2 bg-gradient-to-br from-emerald-900/50 to-teal-900/50 rounded-[1.5rem] p-6 border border-emerald-700/30 hover:border-emerald-500/50 transition-all duration-500 group cursor-pointer overflow-hidden relative">
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-            <Compass className="w-10 h-10 text-teal-400 mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-xl font-serif text-white mb-2">Our Mission</h3>
-            <p className="text-emerald-200/70 text-sm leading-relaxed">Partner with clients at all stages to deliver excellence and achieve unprecedented growth.</p>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="col-span-12 lg:col-span-4 row-span-2 flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-gray-500 text-sm mb-4">Scroll to explore our story</p>
-              <div className="w-8 h-12 border-2 border-gray-600 rounded-full mx-auto flex justify-center pt-2">
-                <div className="w-1.5 h-3 bg-emerald-500 rounded-full animate-bounce" />
-              </div>
+            <Eye className="w-10 h-10 text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
+            <div className="relative z-10">
+              <h3 className="text-lg font-serif text-white mb-1">Our Vision</h3>
+              <p className="text-gray-400 text-xs leading-relaxed hidden lg:block">Creating an ecosystem of financial awareness for an improved economy.</p>
             </div>
           </div>
 
+          {/* Mission Card */}
+          <div className="col-span-1 lg:col-span-2 row-span-1 bg-gradient-to-br from-emerald-900/50 to-teal-900/50 rounded-2xl p-5 border border-emerald-700/30 hover:border-emerald-500/50 transition-all duration-500 group cursor-pointer overflow-hidden relative flex items-center gap-4">
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+            <Compass className="w-10 h-10 text-teal-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
+            <div className="relative z-10">
+              <h3 className="text-lg font-serif text-white mb-1">Our Mission</h3>
+              <p className="text-emerald-200/70 text-xs leading-relaxed hidden lg:block">Partner with clients at all stages to deliver excellence.</p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-500 text-sm mb-3">Scroll to explore our story</p>
+          <div className="w-8 h-12 border-2 border-gray-600 rounded-full mx-auto flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-emerald-500 rounded-full animate-bounce" />
+          </div>
         </div>
       </div>
     </section>
