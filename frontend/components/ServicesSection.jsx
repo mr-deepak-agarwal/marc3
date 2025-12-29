@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { services } from '../data/mock'
+import { services } from '@/data/mock'
 
 const ServicesSection = () => {
   const [hoveredService, setHoveredService] = useState(null)

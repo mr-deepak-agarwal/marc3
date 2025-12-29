@@ -8,7 +8,7 @@ import {
   Users,
   Globe,
 } from 'lucide-react'
-import { aboutSection, stats } from '../data/mock'
+import { aboutSection, stats } from '@/data/mock'
 import { Button } from './ui/button'
 
 const AboutSection = () => {

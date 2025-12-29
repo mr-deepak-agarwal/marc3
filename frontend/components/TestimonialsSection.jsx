@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
-import { testimonials } from '../data/mock'
+import { testimonials } from '@/data/mock'
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)

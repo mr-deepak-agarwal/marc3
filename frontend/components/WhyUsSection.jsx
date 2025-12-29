@@ -1,6 +1,6 @@
 import React from 'react'
 import { Award, Zap, UserCheck, Briefcase } from 'lucide-react'
-import { whyWorkWithUs } from '../data/mock'
+import { whyWorkWithUs } from '@/data/mock'
 
 const icons = [Award, Zap, UserCheck, Briefcase]
 

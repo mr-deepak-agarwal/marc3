@@ -1,6 +1,6 @@
 import React from 'react'
 import { ArrowRight, ArrowUpRight, Calendar } from 'lucide-react'
-import { insights } from '../data/mock'
+import { insights } from '@/data/mock'
 
 const InsightsSection = () => {
   return (

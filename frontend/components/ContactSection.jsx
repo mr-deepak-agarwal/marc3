@@ -8,7 +8,7 @@ import {
   Mail,
   ArrowRight,
 } from 'lucide-react'
-import { companyInfo } from '../data/mock'
+import { companyInfo } from '@/data/mock'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'

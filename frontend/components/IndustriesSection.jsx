@@ -12,7 +12,7 @@ import {
   Factory,
   ArrowRight,
 } from 'lucide-react'
-import { industries } from '../data/mock'
+import { industries } from '@/data/mock'
 
 const industryIcons = {
   Hospitality: Building2,

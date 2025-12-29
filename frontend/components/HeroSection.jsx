@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
-import { companyInfo } from '../data/mock'
+import { companyInfo } from '@/data/mock'
 import { Button } from './ui/button'
 
 const HeroSection = () => {
