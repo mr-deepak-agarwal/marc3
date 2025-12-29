@@ -258,11 +258,10 @@ const TeamSection = ({ selectedMember, setSelectedMember }) => {
               <div className="bg-gray-800/50 rounded-3xl p-8 border border-gray-700">
                 <div className="flex items-start gap-6">
                   <div className="relative w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0">
-                    <Image
+                    <img
                       src={directors[selectedMember].image}
                       alt={directors[selectedMember].name}
-                      fill
-                      className="object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex-1">
